@@ -11,23 +11,22 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.teal,
         body: SafeArea(
-          child: Column(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Container(
                 height: 100,
-                width: 100,
                 color: Colors.white,
                 child: Text('Container'),
               ),
+              SizedBox(width: 20,),
               Container(
                 height: 100,
-                width: 100,
                 color: Colors.blue,
                 child: Text('Container'),
               ),
               Container(
                 height: 100,
-                width: 100,
                 color: Colors.red,
                 child: Text('Container'),
               ),
