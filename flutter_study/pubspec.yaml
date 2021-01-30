@@ -22,3 +22,8 @@ flutter:
   uses-material-design: true
   assets:
     - images/sample1.jpg
+  fonts:
+    - family: Pacifico
+      fonts:
+        - asset: fonts/Tangerine-Bold.ttf
+        - asset: fonts/Tangerine-Regular.ttf
