@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         body: SafeArea(
-          child: Text(nouns.last),
+          child: Text('hello'),
         ),
       ),
     );
