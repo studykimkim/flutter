@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(XylophoneApp());
 
-class MyApp extends StatelessWidget {
+class XylophoneApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         body: SafeArea(
-          child: Text('hello'),
+          child: Container(),
         ),
       ),
     );
