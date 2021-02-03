@@ -34,7 +34,29 @@ class _HttpAppState extends State<HttpApp> {
         title: Text('http example'),
       ),
       body: Container(
-        child: Center(child: data.length == 0 ? Text('$data') : Text('text')),
+        child: Center(
+            child: data.length == 0
+                ? Text('empty')
+                : ListView.builder(itemBuilder: (context, index) {
+                    return Card(
+                      child: Container(
+                        child: Column(
+                          children: <Widget>[
+                            Text(data[index]['title'].toString()),
+                            Text(data[index]['authors'].toString()),
+                            Text(data[index]['sale_price'].toString()),
+                            Text(data[index]['status'].toString()),
+                            Image.network(
+                              data[index]['thumbnail'],
+                              height: 100,
+                              width: 100,
+                              fit: BoxFit.contain,
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  })),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
@@ -46,17 +68,16 @@ class _HttpAppState extends State<HttpApp> {
   }
 
   Future<String> getJSONDate() async {
+    // var url = 'https://www.naver.com';
+    // var response = await http.get(url);
     var url = 'https://dapi.kakao.com/v3/search/book?target=title&query=doit';
     var response = await http.get(Uri.encodeFull(url),
         headers: {"Authorization": "KakaoAK aa91378268011c673401c4605ddb22ea"});
-    print(response.body);
     setState(() {
       var dataConvertedToJSON = json.decode(response.body);
-      List result = dataConvertedToJSON['document'];
+      List result = dataConvertedToJSON['documents'];
       data.addAll(result);
     });
-    print("==================");
-    print(data);
     return response.body;
   }
 }
