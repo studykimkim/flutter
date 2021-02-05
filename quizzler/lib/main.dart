@@ -34,6 +34,31 @@ class _QuizePageState extends State<QuizePage> {
     'A slug blood is green'
   ];
 
+  List<bool> answer = [
+    false,
+    true,
+    true
+  ];
+
+  void check_answer(bool correct, bool cur){
+    print("correct = $correct , cur = $cur");
+    if(correct == cur){
+      scoreKeeper.add(
+        Icon(
+          Icons.check,
+          color: Colors.green,
+        ),
+      );
+    }else{
+      scoreKeeper.add(
+        Icon(
+          Icons.close,
+          color: Colors.red,
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -70,15 +95,15 @@ class _QuizePageState extends State<QuizePage> {
                 ),
               ),
               onPressed: () {
+                print("true button");
                 //The user picked true.
                 setState(() {
+                  bool correct = answer[num];
                   num++;
-                  scoreKeeper.add(
-                    Icon(
-                      Icons.check,
-                      color: Colors.green,
-                    ),
-                  );
+                  check_answer(correct, true);
+                  if(num == 3){
+                    num = 0;
+                  }
                 });
               },
             ),
@@ -98,15 +123,15 @@ class _QuizePageState extends State<QuizePage> {
                 ),
               ),
               onPressed: () {
-                num++;
+                print("false button");
                 //The user picked true.
                 setState(() {
-                  scoreKeeper.add(
-                    Icon(
-                      Icons.close,
-                      color: Colors.red,
-                    ),
-                  );
+                  bool correct = answer[num];
+                  num++;
+                  check_answer(correct, false);
+                  if(num == 3){
+                    num = 0;
+                  }
                 });
               },
             ),
