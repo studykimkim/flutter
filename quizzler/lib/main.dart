@@ -31,7 +31,7 @@ class _QuizePageState extends State<QuizePage> {
   List<Icon> scoreKeeper = [];
   int num = 0;
 
-  List Qz = quizBrain.questionBank;
+//  List Qz = quizBrain.questionBank;
 
 
   void check_answer(bool correct, bool cur) {
@@ -65,7 +65,7 @@ class _QuizePageState extends State<QuizePage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                Qz[num].questionText,
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -92,8 +92,8 @@ class _QuizePageState extends State<QuizePage> {
                 print("true button");
                 //The user picked true.
                 setState(() {
-                  bool correct = Qz[num].questionAnswer;
-                  num++;
+                  bool correct = quizBrain.getQuestionAnswer();
+                  quizBrain.nextQuestion();
                   check_answer(correct, true);
                   if (num == 3) {
                     num = 0;
@@ -120,8 +120,8 @@ class _QuizePageState extends State<QuizePage> {
                 print("false button");
                 //The user picked true.
                 setState(() {
-                  bool correct = Qz[num].questionAnswer;
-                  num++;
+                  bool correct = quizBrain.getQuestionAnswer();
+                  quizBrain.nextQuestion();
                   check_answer(correct, false);
                   if (num == 3) {
                     num = 0;
