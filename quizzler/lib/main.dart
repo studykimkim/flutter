@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'question.dart';
+import 'quize_brain.dart';
 
+QuizBrain quizBrain = new QuizBrain();
 void main() => runApp(Quizzler());
 
 class Quizzler extends StatelessWidget {
@@ -28,28 +31,19 @@ class _QuizePageState extends State<QuizePage> {
   List<Icon> scoreKeeper = [];
   int num = 0;
 
-  List<String> questions = [
-    'You can lead a cow down stairs but not up stairs.',
-    'Approximately one quarter of human bones are in the feet.',
-    'A slug blood is green'
-  ];
+  List Qz = quizBrain.questionBank;
 
-  List<bool> answer = [
-    false,
-    true,
-    true
-  ];
 
-  void check_answer(bool correct, bool cur){
+  void check_answer(bool correct, bool cur) {
     print("correct = $correct , cur = $cur");
-    if(correct == cur){
+    if (correct == cur) {
       scoreKeeper.add(
         Icon(
           Icons.check,
           color: Colors.green,
         ),
       );
-    }else{
+    } else {
       scoreKeeper.add(
         Icon(
           Icons.close,
@@ -71,7 +65,7 @@ class _QuizePageState extends State<QuizePage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[num],
+                Qz[num].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -98,10 +92,10 @@ class _QuizePageState extends State<QuizePage> {
                 print("true button");
                 //The user picked true.
                 setState(() {
-                  bool correct = answer[num];
+                  bool correct = Qz[num].questionAnswer;
                   num++;
                   check_answer(correct, true);
-                  if(num == 3){
+                  if (num == 3) {
                     num = 0;
                   }
                 });
@@ -126,10 +120,10 @@ class _QuizePageState extends State<QuizePage> {
                 print("false button");
                 //The user picked true.
                 setState(() {
-                  bool correct = answer[num];
+                  bool correct = Qz[num].questionAnswer;
                   num++;
                   check_answer(correct, false);
-                  if(num == 3){
+                  if (num == 3) {
                     num = 0;
                   }
                 });
