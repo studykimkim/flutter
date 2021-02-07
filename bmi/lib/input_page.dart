@@ -2,6 +2,7 @@ import 'package:bmi/results_page.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'constants.dart';
+import 'constants.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
 import 'constants.dart';
@@ -226,7 +227,13 @@ class _InputPageState extends State<InputPage> {
                             )));
               },
               child: Container(
-                child: Text('CALCULATOR'),
+                child: Center(
+                  child: Text(
+                    'CALCULATOR',
+                    style: kLargeButtonTextStyle,
+                  ),
+                ),
+                padding: EdgeInsets.only(bottom: 0),
                 width: double.infinity,
                 height: kbottomContainerHeight,
                 color: kbottomContainerColour,
