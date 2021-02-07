@@ -1,3 +1,4 @@
+import 'package:bmi/results_page.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'constants.dart';
@@ -212,11 +213,25 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            Container(
-              width: double.infinity,
-              height: kbottomContainerHeight,
-              color: kbottomContainerColour,
-              margin: EdgeInsets.only(top: 10.0),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ResultsPage(
+                              resultGender: selectedGender,
+                              resultAge: curage,
+                              resultHeight: curheight,
+                              resultWeight: curweight,
+                            )));
+              },
+              child: Container(
+                child: Text('CALCULATOR'),
+                width: double.infinity,
+                height: kbottomContainerHeight,
+                color: kbottomContainerColour,
+                margin: EdgeInsets.only(top: 10.0),
+              ),
             ),
           ],
         ));
