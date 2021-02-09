@@ -1,3 +1,3 @@
-# flutter project
-# flutter udemy study
-# github commit 위젯 만들기 project
+#현재 진행중인 과제
+BMI 지수 계산하기
+  -Calculate 구현 완료 -> 내부적으로 계산 필요
