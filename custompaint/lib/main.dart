@@ -13,8 +13,13 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         body: Container(
-          child: CustomPaint(
-            painter: WatchPainter(),
+          color: Colors.indigoAccent,
+          alignment: Alignment.center,
+          child: AspectRatio(
+            aspectRatio: 2/3,
+            child: CustomPaint(
+              painter: WatchPainter(),
+            ),
           ),
         ),
       ),
