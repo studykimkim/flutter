@@ -1,7 +1,12 @@
+import 'package:clima/screens/location_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:clima/services/location.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:clima/services/networking.dart';
+
+const apiKey = '2fefe33c1a48648dde7346c1b2eeffac';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -9,24 +14,27 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
+  double latitude;
+  double longitude;
+
   @override
   void initState() {
     super.initState();
-    getLocation();
-    getData();
+    getLocationData();
   }
 
-  void getLocation() async {
+  void getLocationData() async {
     Location locationn = Location();
     await locationn.getCurrentLocation();
-    print(locationn.latitude);
-    print(locationn.longitude);
-  }
+    latitude = locationn.latitude;
+    longitude = locationn.longitude;
+    NetwortHelper networtHelper = NetwortHelper(
+        "https://api.openweathermap.org/data/2.5/weather?lat=37.5665&lon=126.9780&appid=$apiKey");
+    var weatherData = await networtHelper.getData();
 
-  void getData() async {
-    Response response = await get(
-        "https://samples.openweathermap.org/data/2.5/weather?q=London&mode=html&appid=b6907d289e10d714a6e88b30761fae22");
-    print(response);
+    Navigator.push(context, MaterialPageRoute(builder: (context){
+      return LocationScreen();
+    }));
   }
 
   @override
