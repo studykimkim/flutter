@@ -22,13 +22,16 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   void getLocationData() async {
-    Location location = Location();
-    await location.getCurrentLocation();
-    latitude = location.latitude;
-    longitude = location.longitude;
+    // print("jaeyeon");
+    // Location location = Location();
+    // await location.getCurrentLocation();
+    // print("jaeyeon2");
+    latitude = 37.5665;
+    longitude = 126.9780;
     NetwortHelper networtHelper = NetwortHelper(
-        "https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=$apiKey&units=metric");
+        "https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey&units=metric");
     var weatherData = await networtHelper.getData();
+    print(weatherData);
 
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return LocationScreen(
